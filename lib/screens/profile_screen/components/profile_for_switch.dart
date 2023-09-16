@@ -25,15 +25,15 @@ class ProfileMenuSwitchWidget extends StatefulWidget {
 class _ProfileMenuSwitchWidgetState extends State<ProfileMenuSwitchWidget> {
   @override
   Widget build(BuildContext context) {
-    // var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    // var iconColor = isDark ? tPrimaryColor : tAccentColor;
     var iconColor = Colors.white;
-
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 2),
+          border: Border.all(
+            color: Colors.black,
+            width: 2,
+          ),
           color: Colors.grey.shade400,
           borderRadius: BorderRadius.circular(30),
         ),
@@ -46,11 +46,18 @@ class _ProfileMenuSwitchWidgetState extends State<ProfileMenuSwitchWidget> {
               borderRadius: BorderRadius.circular(100),
               color: Colors.black,
             ),
-            child: Icon(widget.icon, color: iconColor),
+            child: Icon(
+              widget.icon,
+              color: iconColor,
+            ),
           ),
-          title: Text(widget.title,
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+          title: Text(
+            widget.title,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           trailing: widget.endIcon ? SwitchScreen() : null,
         ),
       ),

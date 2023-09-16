@@ -1,7 +1,7 @@
 import 'package:chat_bot/screens/chat_screen/chat_screen_1/chat_screen1.dart';
 import 'package:chat_bot/screens/chat_screen/chat_screen_2/chat_screen2.dart';
 import 'package:chat_bot/screens/chat_screen/chat_screen_3/chat_screen3.dart';
-import 'package:chat_bot/screens/chat_screen/chat_screen_5/chat_screen.dart';
+import 'package:chat_bot/screens/chat_screen/chat_screen_4/chat_screen4.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -47,7 +47,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (c) => ChatScreen5()));
+                    context, MaterialPageRoute(builder: (c) => ChatScreen4()));
               },
               child: Text("chat 4"),
             ),

@@ -1,7 +1,6 @@
-// ignore_for_file: await_only_futures
+// ignore_for_file: await_only_futures, unused_field
 
 import 'dart:async';
-
 import 'package:chat_bot/screens/chat_screen/chat_screen_2/components/chat_mssage.dart';
 import 'package:chat_bot/screens/chat_screen/chat_screen_2/components/threedots.dart';
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';

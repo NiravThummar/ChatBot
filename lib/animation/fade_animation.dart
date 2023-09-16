@@ -9,14 +9,6 @@ class FadeAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final tween=Multi([
-    //   Track("opacity").add(Duration(milliseconds: 500),Tween(begin: 0.0,end: 1.0)),
-    //   Track("translately").add(Duration(milliseconds: 500),Tween(begin: -30.0,end: 0.0),curve:Curves.easeOut),
-
-    // ])
-    // return PlayAnimationBuilder(
-
-    // );
     final tween = MovieTween()
       ..tween('opacity', Tween(begin: 0.0, end: 1.0),
               duration: const Duration(milliseconds: 500))

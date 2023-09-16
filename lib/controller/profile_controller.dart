@@ -1,6 +1,6 @@
 import 'package:chat_bot/controller/authentication_repository.dart';
 import 'package:chat_bot/controller/user_repository.dart';
-import 'package:chat_bot/controller/usermodel.dart';
+import 'package:chat_bot/models/usermodel.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -20,8 +20,4 @@ class ProfileController extends GetxController {
   }
 
   Future<List<UserModel>> getAllUsers() async => await _userrepo.allUser();
-
-  // updateRecord(UserModel userData, UserModel user) async {
-  //   await _userrepo.updateUserRecord(userData, user);
-  // }
 }

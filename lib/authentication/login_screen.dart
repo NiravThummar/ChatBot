@@ -4,13 +4,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chat_bot/Animation/fade_animation.dart';
 import 'package:chat_bot/authentication/forgotpass_screen.dart';
 import 'package:chat_bot/authentication/signup_screen.dart';
-import 'package:chat_bot/consts/firebase_consts.dart';
 import 'package:chat_bot/controller/authentication_repository.dart';
-
 import 'package:chat_bot/controller/login_controller.dart';
-
 import 'package:chat_bot/home/home.dart';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -346,7 +342,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 15,
                         ),
                         FadeAnimation(
                           delay: 2.1,
@@ -358,7 +354,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 15,
                         ),
                         FadeAnimation(
                           delay: 1.9,
@@ -408,7 +404,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 5,
                         ),
                         FadeAnimation(
                           delay: 2.7,

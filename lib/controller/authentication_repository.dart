@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, body_might_complete_normally_nullable
 
 import 'package:chat_bot/consts/firebase_consts.dart';
 import 'package:chat_bot/home/home.dart';
 import 'package:chat_bot/screens/splash_screen/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -31,7 +30,7 @@ class AuthenticationRepository extends GetxController {
         : Get.offAll(() => Home());
   }
 
-  Future<String?> signup(String email, String password) async {
+  Future<void> signup(String email, String password) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);

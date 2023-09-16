@@ -1,11 +1,7 @@
-import 'package:bubble/bubble.dart';
-import 'package:chat_bot/dialogflow/dialogflowFlutter.dart';
-import 'package:chat_bot/dialogflow/googleAuth.dart';
 import 'package:flutter/material.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
-
   @override
   State<WalletScreen> createState() => _WalletScreenState();
 }

@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+//Main Chat Screen for backup
+
 import 'package:flutter/material.dart';
 import 'package:bubble/bubble.dart';
 import 'package:chat_bot/dialogflow/dialogflowFlutter.dart';
@@ -60,26 +62,46 @@ class _ChatScreen5State extends State<ChatScreen5> {
             Divider(
               height: 6.0,
             ),
-            Container(
-              padding: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 20),
-              margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            Padding(
+              padding: EdgeInsets.all(8),
               child: Row(
-                children: <Widget>[
-                  Flexible(
-                    child: TextField(
-                      controller: messageInsert,
-                      decoration: InputDecoration.collapsed(
-                        hintText: "Send your message",
-                        hintStyle: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18.0),
+                children: [
+                  Expanded(
+                    child: Container(
+                      // padding: EdgeInsets.only(left: 8),
+                      decoration: BoxDecoration(
+                        // borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black),
+                      ),
+                      width: 240,
+                      height: 50,
+                      child: TextField(
+                        controller: messageInsert,
+                        decoration: InputDecoration(
+                          filled: true,
+                          hintText: "Send your message...",
+                          hintStyle: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18.0),
+                          focusedBorder: InputBorder.none,
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                        ),
                       ),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 4.0),
                     child: IconButton(
                       icon: Icon(
-                        Icons.send,
+                        Icons.mic,
+                        size: 30.0,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Container(
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.send_rounded,
                         size: 30.0,
                       ),
                       onPressed: () {
@@ -101,6 +123,47 @@ class _ChatScreen5State extends State<ChatScreen5> {
                 ],
               ),
             ),
+            // Container(
+            //   padding: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 20),
+            //   margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            //   child: Row(
+            //     children: <Widget>[
+            //       Flexible(
+            //         child: TextField(
+            //           controller: messageInsert,
+            //           decoration: InputDecoration(
+            //             hintText: "Send your message",
+            //             hintStyle: TextStyle(
+            //                 fontWeight: FontWeight.bold, fontSize: 18.0),
+            //           ),
+            //         ),
+            //       ),
+            // Container(
+            //   margin: EdgeInsets.symmetric(horizontal: 4.0),
+            //   child: IconButton(
+            //     icon: Icon(
+            //       Icons.send,
+            //       size: 30.0,
+            //     ),
+            //     onPressed: () {
+            //       if (messageInsert.text.isEmpty) {
+            //         print("Empty message");
+            //         Fluttertoast.showToast(msg: "Enter a message");
+            //       } else {
+            //         setState(() {
+            //           messsages.insert(
+            //               0, {"data": 1, "message": messageInsert.text});
+            //           print(messageInsert.text);
+            //         });
+            //         response(messageInsert.text);
+            //         messageInsert.clear();
+            //       }
+            //     },
+            //   ),
+            // ),
+            // ],
+            // ),
+            // ),
             SizedBox(
               height: 15.0,
             )

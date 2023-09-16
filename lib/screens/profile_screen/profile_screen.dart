@@ -1,12 +1,14 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
-
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, use_build_context_synchronously
 import 'package:chat_bot/controller/profile_controller.dart';
 import 'package:chat_bot/controller/authentication_repository.dart';
-import 'package:chat_bot/controller/usermodel.dart';
+import 'package:chat_bot/models/usermodel.dart';
+import 'package:chat_bot/screens/history_screen/history_screen.dart';
 import 'package:chat_bot/screens/profile_screen/components/profile_for_switch.dart';
 import 'package:chat_bot/screens/profile_screen/components/profile_menu.dart';
-import 'package:chat_bot/screens/profile_screen/edit_profile.dart';
+import 'package:chat_bot/screens/profile_screen/edit_profile_screen.dart';
 import 'package:chat_bot/screens/splash_screen/splash_screen.dart';
+import 'package:chat_bot/screens/wallet_screen/wallet_screen.dart';
+import 'package:chat_bot/ui/navigation_home_screen.dart';
 import 'package:chat_bot/widgets/dialogs/theme_dialog.dart';
 import 'package:chat_bot/widgets/dialogs/logout_dialog.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +19,6 @@ import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
-
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -39,7 +40,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         elevation: 10,
-        title: Text("Profile"),
+        title: Text(
+          "Profile",
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -52,7 +55,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
                     UserModel userData = snapshot.data as UserModel;
-
                     final name = TextEditingController(text: userData.name);
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: CircleAvatar(
                                       radius: 50,
                                       backgroundColor: Colors.white,
-                                      child: userData.imgUrl == null
+                                      child: userData.imgUrl!.isEmpty
                                           ? ProfilePicture(
                                               name: name.text[0],
                                               radius: 60,
@@ -100,15 +102,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Positioned(
                                 bottom: 0,
                                 right: 0,
-                                child: InkWell(
-                                  onTap: () {},
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: Colors.black,
                                   child: CircleAvatar(
-                                    radius: 20,
-                                    backgroundColor: Colors.black,
-                                    child: CircleAvatar(
-                                      radius: 19,
-                                      child: Icon(Icons.add_a_photo,
-                                          color: Colors.black, size: 20),
+                                    radius: 19,
+                                    child: Icon(
+                                      Icons.add_a_photo,
+                                      color: Colors.black,
+                                      size: 20,
                                     ),
                                   ),
                                 ),
@@ -152,10 +154,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 MaterialPageRoute(
                                     builder: (c) => EditProfileScreen()));
                           },
-                          child: Text("Edit Profile"),
+                          child: Text(
+                            "Edit Profile",
+                          ),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red.shade300,
-                              foregroundColor: Colors.white),
+                            backgroundColor: Colors.red.shade300,
+                            foregroundColor: Colors.white,
+                          ),
                         ),
                         SizedBox(
                           height: 15,
@@ -164,7 +169,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Divider(
                             height: 2,
-                            // color: Colors.black,
                           ),
                         ),
                         SizedBox(
@@ -173,17 +177,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ProfileMenuWidget(
                           title: "Settings",
                           icon: Icons.settings,
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (c) => NavigationHomeScreen()));
+                          },
                         ),
                         ProfileMenuWidget(
                           title: "History",
                           icon: Icons.history,
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (c) => HistoryScreen(
+                                          userid: userData.id.toString(),
+                                        )));
+                          },
                         ),
                         ProfileMenuWidget(
                           title: "Theme",
                           icon: Icons.dark_mode_outlined,
-                          // onPress: showThemePicker,
                           onPress: () async {
                             await showThemeChangerDialog(context);
                           },
@@ -191,7 +206,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ProfileMenuWidget(
                           title: "Wallet",
                           icon: Icons.wallet,
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (c) => WalletScreen()));
+                          },
                         ),
                         ProfileMenuSwitchWidget(
                           title: "Notifications",
@@ -208,10 +228,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Divider(
                             height: 2,
-                            // color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: 5),
+                        SizedBox(
+                          height: 5,
+                        ),
                         ProfileMenuWidget(
                           title: "Information",
                           icon: Icons.info,
@@ -220,7 +241,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ProfileMenuWidget(
                           title: "Logout",
                           icon: Icons.logout,
-                          textColor: Colors.red,
                           endIcon: false,
                           onPress: () async {
                             final shouldLogout =
@@ -250,7 +270,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   }
                 } else {
-                  return Center(child: CircularProgressIndicator());
+                  Future.delayed(
+                    Duration(seconds: 3),
+                  );
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
               },
             ),

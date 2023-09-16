@@ -51,26 +51,33 @@ dependencies:
   fan_side_drawer: any
   pinput: ^3.0.0
   image_picker: ^1.0.2
-  firebase_database: ^10.2.4
   firebase_messaging: ^14.6.5
   flutter_profile_picture: ^2.0.0
   firebase_storage: ^11.2.6
   googleapis_auth: ^1.4.1
   bubble: ^1.2.1
+  flutter_local_notifications: ^15.1.1
   # chat_gpt_sdk: ^2.2.4
   chat_gpt_sdk:
     git:
       url: https://github.com/iampawan/Flutter-ChatGPT.git
-
   velocity_x: ^4.1.1
-  dart_openai: ^4.0.0
-  flutter_dotenv: ^5.1.0
+  flutter_slidable: ^3.0.0
   http: ^1.1.0
+  flutter_rating_bar: ^4.0.1
+  intl: ^0.18.1
+  animations: ^2.0.8
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: "launcher_icon"
+  image_path: "assets/bot.png"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -93,6 +100,10 @@ flutter:
   assets:
     - assets/images/
     - assets/
+    - assets/design_course/
+    - assets/fitness_app/
+    - assets/hotel/
+    - assets/introduction_animation/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

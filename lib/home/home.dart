@@ -1,17 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:chat_bot/screens/chat_screen/chat_screen.dart';
+import 'package:chat_bot/screens/chat_screen/chat_screen_4/chat_screen4.dart';
 import 'package:chat_bot/screens/chat_screen/chat_screen_5/chat_screen.dart';
 import 'package:chat_bot/screens/home_screen/home_screen.dart';
 import 'package:chat_bot/screens/profile_screen/profile_screen.dart';
-
 import 'package:chat_bot/screens/wallet_screen/wallet_screen.dart';
 import 'package:chat_bot/widgets/dialogs/exit_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-// import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -53,8 +50,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           controller: tabController,
           children: [
             HomeScreen(),
-            // ChatScreen(),
-            ChatScreen5(),
+            ChatScreen4(),
             WalletScreen(),
             ProfileScreen(),
           ],
@@ -62,8 +58,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         bottomNavigationBar: Container(
           height: 65,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30), topLeft: Radius.circular(30)),
             boxShadow: [
               BoxShadow(
                 color: Colors.black45,
@@ -74,8 +68,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(45),
-              topRight: Radius.circular(45),
+              topLeft: Radius.circular(35),
+              topRight: Radius.circular(35),
             ),
             child: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
@@ -131,7 +125,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               selectedFontSize: 13,
               unselectedFontSize: 12,
               showUnselectedLabels: true,
-              backgroundColor: Colors.black54,
+              backgroundColor: Colors.black87,
               unselectedItemColor: Colors.white54,
               selectedItemColor: Colors.white,
             ),

@@ -1,11 +1,14 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chat_bot/Animation/fade_animation.dart';
 import 'package:chat_bot/authentication/login_screen.dart';
 import 'package:chat_bot/controller/authentication_repository.dart';
 import 'package:chat_bot/controller/sign_controller.dart';
 import 'package:chat_bot/controller/user_repository.dart';
-import 'package:chat_bot/controller/usermodel.dart';
+import 'package:chat_bot/models/usermodel.dart';
 import 'package:chat_bot/home/home.dart';
+import 'package:chat_bot/services/local_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -35,6 +38,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
     scrollController = ScrollController();
     scrollController.addListener(scrollListener);
+    LocalNotification.initialize();
   }
 
   scrollListener() {
@@ -436,11 +440,15 @@ class _SignupScreenState extends State<SignupScreen> {
                                   Fluttertoast.showToast(
                                       msg: "Email Already in Use");
                                 } else {
-                                  authrepo.signup(email.text, pass.text);
-                                  userrepo.createUser(user);
+                                  await authrepo.signup(email.text, pass.text);
+                                  await userrepo.createUser(user);
                                   Future.delayed(Duration(seconds: 2));
                                   Fluttertoast.showToast(
                                       msg: "Account Created");
+                                  LocalNotification.showNotification(
+                                    title: "EduGPT",
+                                    body: "Welcome, in Chatbot",
+                                  );
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -465,7 +473,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 10,
                         ),
                         FadeAnimation(
                           delay: 2,

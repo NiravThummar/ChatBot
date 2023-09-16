@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-class ThemeNotifier extends ChangeNotifier {
-  ThemeData _themeData;
-  ThemeNotifier(this._themeData);
-  ThemeData get getTheme => _themeData;
+// class ThemeNotifier extends ChangeNotifier {
+//   ThemeData _themeData;
+//   ThemeNotifier(this._themeData);
+//   ThemeData get getTheme => _themeData;
 
-  setTheme(ThemeData themeData) {
-    _themeData = themeData;
-    notifyListeners();
-  }
-}
+//   setTheme(ThemeData themeData) {
+//     _themeData = themeData;
+//     notifyListeners();
+//   }
+// }

@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:chat_bot/screens/chat_screen/chat_screen_1/components/chat_message_type.dart';
 import 'package:chat_bot/screens/chat_screen/chat_screen_1/components/chatmessagewidget.dart';
 import 'package:flutter/material.dart';
@@ -39,9 +37,9 @@ Future<String> generateResponse(String prompt) async {
       'presence_penalty': 0.0,
     }),
   );
-  Map<String, dynamic> newresponse = jsonDecode(response.body);
+  Map<String, dynamic> newResponse = jsonDecode(response.body);
 
-  return newresponse['choices'][0]['text'];
+  return newResponse['choices'][0]['text'];
 }
 
 class _ChatScreen1State extends State<ChatScreen1> {

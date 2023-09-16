@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:chat_bot/consts/firebase_consts.dart';
-import 'package:chat_bot/controller/usermodel.dart';
+import 'package:chat_bot/models/usermodel.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -9,13 +9,15 @@ class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
   createUser(UserModel user) async {
-    await firestore
-        .collection(userCollection)
-        .add(user.toJson())
-        // .whenComplete(() => Fluttertoast.showToast(msg: "Your Account created"))
-        .catchError((error, stackTrace) {
-      Fluttertoast.showToast(msg: "Error");
-    });
+    try {
+      await firestore.collection(userCollection).add(user.toJson());
+      // .whenComplete(() => Fluttertoast.showToast(msg: "Your Account created"))
+      // .catchError((error, stackTrace) {
+      // Fluttertoast.showToast(msg: "Error");
+      // });
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
   }
 
   Future<UserModel> getUserDetails(String email) async {
@@ -42,25 +44,16 @@ class UserRepository extends GetxController {
   }
 
   Future<void> updateProfilePicture(File image, UserModel user) async {
-    print("wnfnevvv $image");
-    print("  hiiiiiHellokkv: $image");
     var pathImage = image.toString();
     var temp = pathImage.lastIndexOf('/');
     var result = pathImage.substring(temp + 1);
-    print("result is this;  $result");
     final Reference ref =
         FirebaseStorage.instance.ref().child("profile_images").child(result);
     TaskSnapshot snapshot = await ref.putFile(image);
-    // if (snapshot.state == TaskState.success) {
     var imgUrl = await snapshot.ref.getDownloadURL();
-    print("ImgUrlvndkwenjk $imgUrl");
-    // }
-    print("Update success $snapshot");
-    // try {
     await firestore
         .collection(userCollection)
         .doc(user.id)
         .update({'imgUrl': imgUrl});
-    // } catch (e) {}
   }
 }

@@ -1,5 +1,6 @@
-import 'dart:async';
+// ignore_for_file: unused_local_variable
 
+import 'dart:async';
 import 'package:chat_bot/screens/chat_screen/chat_screen_3/components/chat_gpt_sdk.dart';
 import 'package:chat_bot/screens/chat_screen/chat_screen_3/components/chat_message.dart';
 import 'package:flutter/material.dart';
